@@ -35,7 +35,7 @@ namespace CapStoneATM
 
         private void btn_Enter_Click(object sender, EventArgs e)
         {
-            if (AccountLabel.TextLength <= 17 || AccountLabel.TextLength >= 8)
+            if (AccountLabel.TextLength <= 17 && AccountLabel.TextLength >= 8)
                 //will need to have it check if it is in the data base. 
             {
                 try {
