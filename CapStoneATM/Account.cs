@@ -35,17 +35,21 @@ namespace CapStoneATM
 
         private void btn_Enter_Click(object sender, EventArgs e)
         {
-            if (AccountLabel.TextLength == 16)
+            if (AccountLabel.TextLength <= 17 || AccountLabel.TextLength >= 8)
                 //will need to have it check if it is in the data base. 
             {
                 try {
                     string str = AccountLabel.Text;
                     long.Parse(str);
-                   
+                    if (long.Parse(str) == 1111111111111111)
+                    { 
+
+                    }
                     this.Hide();
                     PinForm pinForm = new PinForm();
                     pinForm.ShowDialog();
                     this.Close();
+
                 }
                 catch (Exception) {
                     string box_error = "Invalid entery";

@@ -85,13 +85,19 @@ namespace CapStoneATM
                 {
                     string box_error = "Invalid entery";
                     MessageBox.Show(box_error);
-                    txtbox_pin.Clear();
+                    this.Hide();
+                    AccountForm accountForm = new AccountForm();
+                    accountForm.ShowDialog();
+                    this.Close();
                 }
             }
             else {
                 string box_error = "Invalid entery";
                 MessageBox.Show(box_error);
-                txtbox_pin.Clear();
+                this.Hide();
+                AccountForm accountForm = new AccountForm();
+                accountForm.ShowDialog();
+                this.Close();
             }
         }
 

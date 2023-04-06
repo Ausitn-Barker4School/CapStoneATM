@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace CapStoneATM
 {
     public partial class Withdrawal : Form
@@ -88,24 +89,40 @@ namespace CapStoneATM
         private void btn_withDraw20_Click(object sender, EventArgs e)
         {
             //Withdrawals 20 from the data base
+            this.Hide();
+            MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+            makeAnotherWithdrawal.ShowDialog();
+            this.Close();
 
         }
 
         private void btn_withDraw40_Click(object sender, EventArgs e)
         {
             //withdrawals 2 20 from the data base
+            this.Hide();
+            MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+            makeAnotherWithdrawal.ShowDialog();
+            this.Close();
 
         }
 
         private void btn_withDraw60_Click(object sender, EventArgs e)
         {
             //withdrawals 3 20 from the data base
+            this.Hide();
+            MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+            makeAnotherWithdrawal.ShowDialog();
+            this.Close();
 
         }
 
         private void btn_withDraw100_Click(object sender, EventArgs e)
         {
             //withdrawals 5 20 from the data base
+            this.Hide();
+            MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+            makeAnotherWithdrawal.ShowDialog();
+            this.Close();
 
         }
 
@@ -117,9 +134,24 @@ namespace CapStoneATM
                 decimal withdrawal = 0;
                 withdrawal = Convert.ToDecimal(str);
                 if (withdrawal % 20 == 0)
-                { 
-                    //withdrawals the amount
-                }
+                {
+                    if (withdrawal > 1000)
+                    {
+                        string box_error = "Invalid entery";
+                        MessageBox.Show(box_error);
+                        txtbox_Withdrawal.Clear();
+                    }
+                    else
+                    {
+                        //withdrawals the amount
+
+                        this.Hide();
+                        MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+                        makeAnotherWithdrawal.ShowDialog();
+                        this.Close();
+                    }
+
+                    }
                 else
                 {
                     string box_error = "Invalid entery";
@@ -141,6 +173,14 @@ namespace CapStoneATM
             this.Hide();
             AccountForm accountForm = new AccountForm();
             accountForm.ShowDialog();
+            this.Close();
+        }
+
+        private void btn_EditFile_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            EditAccount editAccount = new EditAccount();
+            editAccount.ShowDialog();
             this.Close();
         }
     }

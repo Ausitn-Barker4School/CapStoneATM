@@ -50,7 +50,7 @@ namespace CapStoneATM
             // 
             this.AccountLabel.Location = new System.Drawing.Point(238, 196);
             this.AccountLabel.Name = "AccountLabel";
-            this.AccountLabel.Size = new System.Drawing.Size(383, 39);
+            this.AccountLabel.Size = new System.Drawing.Size(340, 39);
             this.AccountLabel.TabIndex = 0;
             // 
             // btn_Delete

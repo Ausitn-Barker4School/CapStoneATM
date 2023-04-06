@@ -47,7 +47,6 @@ namespace CapStoneATM
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btn_Enter = new System.Windows.Forms.Button();
             this.btn_Delete = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_EditFile = new System.Windows.Forms.Button();
@@ -105,11 +104,11 @@ namespace CapStoneATM
             // 
             // btn_withdrawal
             // 
-            this.btn_withdrawal.Location = new System.Drawing.Point(142, 611);
+            this.btn_withdrawal.Location = new System.Drawing.Point(149, 479);
             this.btn_withdrawal.Name = "btn_withdrawal";
-            this.btn_withdrawal.Size = new System.Drawing.Size(150, 46);
+            this.btn_withdrawal.Size = new System.Drawing.Size(129, 46);
             this.btn_withdrawal.TabIndex = 5;
-            this.btn_withdrawal.Text = "Withdrawal";
+            this.btn_withdrawal.Text = "Withdraw";
             this.btn_withdrawal.UseVisualStyleBackColor = true;
             this.btn_withdrawal.Click += new System.EventHandler(this.btn_withdrawal_Click);
             // 
@@ -230,15 +229,6 @@ namespace CapStoneATM
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btn_Enter
-            // 
-            this.btn_Enter.Location = new System.Drawing.Point(142, 479);
-            this.btn_Enter.Name = "btn_Enter";
-            this.btn_Enter.Size = new System.Drawing.Size(136, 46);
-            this.btn_Enter.TabIndex = 39;
-            this.btn_Enter.Text = "Enter";
-            this.btn_Enter.UseVisualStyleBackColor = true;
-            // 
             // btn_Delete
             // 
             this.btn_Delete.Location = new System.Drawing.Point(142, 542);
@@ -266,6 +256,7 @@ namespace CapStoneATM
             this.btn_EditFile.TabIndex = 54;
             this.btn_EditFile.Text = "Account";
             this.btn_EditFile.UseVisualStyleBackColor = true;
+            this.btn_EditFile.Click += new System.EventHandler(this.btn_EditFile_Click);
             // 
             // btn_logOut
             // 
@@ -281,7 +272,7 @@ namespace CapStoneATM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1171, 669);
+            this.ClientSize = new System.Drawing.Size(922, 705);
             this.Controls.Add(this.btn_logOut);
             this.Controls.Add(this.btn_EditFile);
             this.Controls.Add(this.label2);
@@ -296,7 +287,6 @@ namespace CapStoneATM
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btn_Enter);
             this.Controls.Add(this.btn_Delete);
             this.Controls.Add(this.txtbox_Withdrawal);
             this.Controls.Add(this.btn_withdrawal);
@@ -332,7 +322,6 @@ namespace CapStoneATM
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btn_Enter;
         private System.Windows.Forms.Button btn_Delete;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_EditFile;
