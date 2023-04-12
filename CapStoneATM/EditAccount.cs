@@ -95,6 +95,19 @@ namespace CapStoneATM
 
         private void btn_pinAdd_Click(object sender, EventArgs e)
         {
+            if (txtbox_pin.TextLength == 4)
+            {
+                string success = "Success";
+                MessageBox.Show(success);
+
+                txtbox_pin.Clear();
+            }
+            else 
+            {
+                string box_error = "Invalid entery";
+                MessageBox.Show(box_error);
+                txtbox_pin.Clear();
+            }
             // adds to the sql data base. 
         } 
         
@@ -171,6 +184,19 @@ namespace CapStoneATM
         private void btn_phoneAdd_Click(object sender, EventArgs e)
         {
             //adds to SQL
+            if (txtbox_Phone.TextLength == 10)
+            {
+                string success = "Success";
+                MessageBox.Show(success);
+
+                txtbox_Phone.Clear();
+            }
+            else
+            {
+                string box_error = "Invalid entery";
+                MessageBox.Show(box_error);
+                txtbox_Phone.Clear();
+            }
         }
 
         private void btn_logOut_Click(object sender, EventArgs e)

@@ -1,20 +1,31 @@
-﻿using System;
+﻿//using DocumentFormat.OpenXml.Spreadsheet;
+using Nest;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ATM.DB.UOW;
+using ATM.DB.Interfaces;
+using Dapper;
+
 
 namespace CapStoneATM
 {
     public partial class AccountForm : Form
     {
+        public IConnectionFactory GetConnection { get; private set; }
         public AccountForm()
         {
             InitializeComponent();
+            GetConnection = new DatabaseConnectionFactory();
+            
+            
         }
         
         
@@ -40,11 +51,19 @@ namespace CapStoneATM
             {
                 try {
                     string str = AccountLabel.Text;
-                    long.Parse(str);
-                    if (long.Parse(str) == 1111111111111111)
-                    { 
+                    
+                  
 
-                    }
+            //        string connstring = "Data Source = (localdb)\\MSSLLocalDB;" +
+            //"Initial Catalog =  CapeStoneATM;"
+            //+ "Trusted_Connection = True;";
+            //        SqlConnection con = new SqlConnection(connstring);
+            //        con.Open();
+            //        string check = "Select * from AccountAndPin Where AccountNumber = @str";
+            //        SqlCommand cmd = new SqlCommand(check, con);
+
+
+
                     this.Hide();
                     PinForm pinForm = new PinForm();
                     pinForm.ShowDialog();

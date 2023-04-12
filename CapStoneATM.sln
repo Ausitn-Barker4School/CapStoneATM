@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33423.256
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapStoneATM", "CapStoneATM\CapStoneATM.csproj", "{62CE5DA2-7260-4AA1-B055-46970AD09A62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapStoneATM", "CapStoneATM\CapStoneATM.csproj", "{62CE5DA2-7260-4AA1-B055-46970AD09A62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATM.DB", "ATM.DB\ATM.DB.csproj", "{7A711FD5-EC99-4F26-A24F-7B7CF5EAAF2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.Logic", "ATM.Logic\ATM.Logic.csproj", "{43479BAF-8031-4DF7-ACD5-6B79F5044A2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{62CE5DA2-7260-4AA1-B055-46970AD09A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62CE5DA2-7260-4AA1-B055-46970AD09A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62CE5DA2-7260-4AA1-B055-46970AD09A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A711FD5-EC99-4F26-A24F-7B7CF5EAAF2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A711FD5-EC99-4F26-A24F-7B7CF5EAAF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A711FD5-EC99-4F26-A24F-7B7CF5EAAF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A711FD5-EC99-4F26-A24F-7B7CF5EAAF2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43479BAF-8031-4DF7-ACD5-6B79F5044A2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43479BAF-8031-4DF7-ACD5-6B79F5044A2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43479BAF-8031-4DF7-ACD5-6B79F5044A2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43479BAF-8031-4DF7-ACD5-6B79F5044A2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
