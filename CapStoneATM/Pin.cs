@@ -7,15 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ATM.DB.UOW;
+using ATM.DB.Interfaces;
+using ATM.Logic.Models;
+using Dapper;
+using ATM.DB.Repository;
 
 namespace CapStoneATM
 {
     public partial class PinForm : Form
     {
+        public IConnectionFactory GetConnection { get; private set; }
+        public string Value { get; set; }
         public PinForm()
         {
             InitializeComponent();
+            GetConnection = new DatabaseConnectionFactory();
+            var atm = new UnitOfWork(GetConnection);
+
         }
+        
         //txtbox_pin
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,16 +81,24 @@ namespace CapStoneATM
 
         private void btn_Enter_Click(object sender, EventArgs e)
         {
+            
+            AccountAndPinRepository accountAndPinRepository = new AccountAndPinRepository(GetConnection);
             if (txtbox_pin.TextLength == 4)
             {
-                try {
-                    string str = txtbox_pin.Text;
-                    Convert.ToInt32(str);
+                try
+                {
+                    int pin = Convert.ToInt32(txtbox_pin.Text);
+                    bool exit = false;
+                    //Will need to work on this when I can. it similar to the product update on the CKK project. 
+                  exit =  accountAndPinRepository.GetPin(Value, pin);
 
-                    this.Hide();
-                    Withdrawal withdrawal = new Withdrawal();
-                    withdrawal.ShowDialog();
-                    this.Close();
+                    if (exit.Equals(true))
+                    {
+                        this.Hide();
+                        Withdrawal withdrawal = new Withdrawal();
+                        withdrawal.ShowDialog();
+                        this.Close();
+                    }
                 }
                 catch (Exception)
                 {

@@ -8,10 +8,11 @@ namespace ATM.DB.Interfaces
 {
     public interface ICustomer
     {
-        string GetAccount(string account);
+        List<string> GetAccount(string id);
         string GetFirstName(string firstName);
         string GetLastName(string lastName);
         decimal GetFunds(decimal funds);
+        decimal UpdateFunds(decimal funds, string id);
 
     }
 }

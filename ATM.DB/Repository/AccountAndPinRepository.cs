@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ATM.DB.Interfaces;
+using ATM.Logic.Models;
+using Dapper;
 
 namespace ATM.DB.Repository
 {
@@ -17,19 +20,56 @@ namespace ATM.DB.Repository
             _connectionFactory = conn;
         }
 
-        public int AddPin(int pin)
+        public int AddPin(string accountNumber, int pin)
         {
-            throw new NotImplementedException();
+            var sql = "Insert into AccountAndPin (AccountNumber, Pin) VALUE(@AccountNumber, @Pin)";
+            using (var connection = _connectionFactory.GetConnetion)
+            {
+                connection.Open();
+                var result = connection.QueryFirstOrDefault(sql, new { AccountNumber = accountNumber, Pin = pin });
+                return result;
+            }
         }
 
         public string GetAccount(string id)
         {
-            throw new NotImplementedException();
+            var sql = "SELECT TOP 1 * FROM AccountAndPin WHERE AccountNumber = @AccountNumber";
+            using (var connection = _connectionFactory.GetConnetion)
+            {
+                connection.Open();
+                var result = connection.QueryFirstOrDefault(sql, new { AccountNumber = id });
+                return result;
+            }
         }
 
-        public int GetPin(int pin)
+        public bool GetPin(string accountNumber, int pin)
         {
-            throw new NotImplementedException();
+            var sql = "SELECT TOP 1 * FROM AccountAndPin WHERE  AccountNumber = @AccountNumber AND Pin = @Pin";
+            using (var connection = _connectionFactory.GetConnetion)
+            {
+                connection.Open();
+               var result = connection.QueryFirst(sql, new { AccountNumber = accountNumber, Pin = pin });
+                
+                //I am still having issues with the testing of the pins and the account and it will just say that it is invalide. 
+
+            }
+
+
+
+
         }
     }
 }
+
+/*
+ var sql = "SELECT * FROM AccountAndPin WHERE  AccountNumber = @AccountNumber AND Pin = @Pin";
+            using (var connection = _connectionFactory.GetConnetion)
+            {
+                connection.Open();
+               
+                var result = connection.QueryFirstOrDefault(sql, new { AccountNumber = accountNumber, Pin = pin });
+                
+                
+
+            }
+ */

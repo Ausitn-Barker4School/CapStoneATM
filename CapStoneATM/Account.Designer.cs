@@ -78,9 +78,9 @@ namespace CapStoneATM
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(238, 143);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(306, 32);
+            this.label1.Size = new System.Drawing.Size(313, 32);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Enter your account number";
+            this.label1.Text = "Enter your Account Number";
             // 
             // button1
             // 

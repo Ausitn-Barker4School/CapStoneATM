@@ -12,7 +12,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ATM.DB.UOW;
 using ATM.DB.Interfaces;
+using ATM.Logic.Models;
 using Dapper;
+using ATM.DB.Repository;
 
 
 namespace CapStoneATM
@@ -24,6 +26,7 @@ namespace CapStoneATM
         {
             InitializeComponent();
             GetConnection = new DatabaseConnectionFactory();
+            var atm = new UnitOfWork(GetConnection);
             
             
         }
@@ -46,27 +49,21 @@ namespace CapStoneATM
 
         private void btn_Enter_Click(object sender, EventArgs e)
         {
+            AccountAndPinRepository accountAndPinRepository = new AccountAndPinRepository(GetConnection);
             if (AccountLabel.TextLength <= 17 && AccountLabel.TextLength >= 8)
                 //will need to have it check if it is in the data base. 
             {
                 try {
                     string str = AccountLabel.Text;
-                    
+
+                    accountAndPinRepository.GetAccount(str);
                   
-
-            //        string connstring = "Data Source = (localdb)\\MSSLLocalDB;" +
-            //"Initial Catalog =  CapeStoneATM;"
-            //+ "Trusted_Connection = True;";
-            //        SqlConnection con = new SqlConnection(connstring);
-            //        con.Open();
-            //        string check = "Select * from AccountAndPin Where AccountNumber = @str";
-            //        SqlCommand cmd = new SqlCommand(check, con);
-
-
 
                     this.Hide();
                     PinForm pinForm = new PinForm();
+                    pinForm.Value = str;
                     pinForm.ShowDialog();
+
                     this.Close();
 
                 }

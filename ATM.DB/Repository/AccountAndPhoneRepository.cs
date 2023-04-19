@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ATM.DB.Interfaces;
+using Dapper;
 
 namespace ATM.DB.Repository
 {
@@ -16,19 +17,37 @@ namespace ATM.DB.Repository
             _connectionFactory = conn;
         }
 
-        public string AddPhone(string phone)
+        public string AddPhone(string accountNumber, string phone)
         {
-            throw new NotImplementedException();
+            var sql = "Insert into AccountAndPhone (AccountNumber, PhoneNumber) VALUE(@AccountNumber, @PhoneNumber)";
+            using (var connection = _connectionFactory.GetConnetion)
+            {
+                connection.Open();
+                var result = connection.QueryFirstOrDefault(sql, new {AccountNumber = accountNumber, Phone = phone });
+                return result;
+            }
         }
 
-        public string GetAccount(string id)
+        public List<string> GetAccount(string id)
         {
-            throw new NotImplementedException();
+            var sql = "SELECT * FROM AcountAndPhone WHERE AccountNumber = @AccountNumber";
+            using (var connection = _connectionFactory.GetConnetion)
+            {
+                connection.Open();
+                var result = connection.Query<string>(sql, new { AccountNumber = id }).ToList();
+                return result;
+            }
         }
 
         public string GetPhone(string phone)
         {
-            throw new NotImplementedException();
+            var sql = "SELECT * FROM AcountAndPhone WHERE Phone = @Phone";
+            using (var connection = _connectionFactory.GetConnetion)
+            {
+                connection.Open();
+                var result = connection.QuerySingleOrDefault<string>(sql, new { Phone = phone });
+                return result;
+            }
         }
     }
 }

@@ -8,8 +8,8 @@ namespace ATM.DB.Interfaces
 {
     public interface IAccountAndPhone
     {
-       string GetAccount(string id);
-        string AddPhone(string phone);
+       List<string> GetAccount(string id);
+        string AddPhone(string accountNumber, string phone);
         string GetPhone(string phone);
     }
 }
