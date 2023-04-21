@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -31,28 +32,34 @@ namespace ATM.DB.Repository
             }
         }
 
-        public string GetAccount(string id)
+        public  bool GetAccount(string id)
         {
-            var sql = "SELECT TOP 1 * FROM AccountAndPin WHERE AccountNumber = @AccountNumber";
+            var sql = "SELECT * FROM AccountAndPin WHERE AccountNumber = @AccountNumber";
             using (var connection = _connectionFactory.GetConnetion)
             {
                 connection.Open();
-                var result = connection.QueryFirstOrDefault(sql, new { AccountNumber = id });
-                return result;
+
+                var result = connection.QueryFirst(sql, new { AccountNumber = id });
+                if(result != "")
+                { return true; }
+                else { return false; }
+                
             }
         }
 
         public bool GetPin(string accountNumber, int pin)
         {
-            var sql = "SELECT TOP 1 * FROM AccountAndPin WHERE  AccountNumber = @AccountNumber AND Pin = @Pin";
+            var sql = "SELECT  * FROM AccountAndPin WHERE  AccountNumber = @AccountNumber AND Pin = @Pin";
             using (var connection = _connectionFactory.GetConnetion)
             {
                 connection.Open();
                var result = connection.QueryFirst(sql, new { AccountNumber = accountNumber, Pin = pin });
-                
-                //I am still having issues with the testing of the pins and the account and it will just say that it is invalide. 
-
+                if (result != "")
+                { return true; }
+                else { return false; }
+               
             }
+            
 
 
 
@@ -61,15 +68,3 @@ namespace ATM.DB.Repository
     }
 }
 
-/*
- var sql = "SELECT * FROM AccountAndPin WHERE  AccountNumber = @AccountNumber AND Pin = @Pin";
-            using (var connection = _connectionFactory.GetConnetion)
-            {
-                connection.Open();
-               
-                var result = connection.QueryFirstOrDefault(sql, new { AccountNumber = accountNumber, Pin = pin });
-                
-                
-
-            }
- */

@@ -96,6 +96,7 @@ namespace CapStoneATM
                     {
                         this.Hide();
                         Withdrawal withdrawal = new Withdrawal();
+                        withdrawal.Value = Value;
                         withdrawal.ShowDialog();
                         this.Close();
                     }

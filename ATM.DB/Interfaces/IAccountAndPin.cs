@@ -9,7 +9,7 @@ namespace ATM.DB.Interfaces
 {
     public interface IAccountAndPin
     {
-        string GetAccount(string id);
+        bool GetAccount(string id);
         int AddPin(string accountNumber, int pin);
         bool GetPin(string accountNumber, int pin);
     }

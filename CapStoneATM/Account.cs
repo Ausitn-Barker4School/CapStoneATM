@@ -53,10 +53,14 @@ namespace CapStoneATM
             if (AccountLabel.TextLength <= 17 && AccountLabel.TextLength >= 8)
                 //will need to have it check if it is in the data base. 
             {
+                
+               
                 try {
                     string str = AccountLabel.Text;
 
                     accountAndPinRepository.GetAccount(str);
+
+
                   
 
                     this.Hide();

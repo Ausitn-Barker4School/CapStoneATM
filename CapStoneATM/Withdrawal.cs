@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATM.DB.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,17 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ATM.DB.Repository;
+using ATM.DB.UOW;
 
 namespace CapStoneATM
 {
     public partial class Withdrawal : Form
     {
+        public IConnectionFactory GetConnection { get; private set; }
+        public string Value { get; set; }
+        
         public Withdrawal()
         {
             InitializeComponent();
+            GetConnection = new DatabaseConnectionFactory();
+            var atm = new UnitOfWork(GetConnection);
         }
 
+        //Buttons to enter in the money value
         private void button1_Click(object sender, EventArgs e)
         {
             txtbox_Withdrawal.Text = txtbox_Withdrawal.Text + "1";
@@ -88,7 +96,10 @@ namespace CapStoneATM
 
         private void btn_withDraw20_Click(object sender, EventArgs e)
         {
+            CustomerRepository customerRepository = new CustomerRepository(GetConnection);
+            decimal withDraw20 = 20;
             //Withdrawals 20 from the data base
+            customerRepository.UpdateFunds(withDraw20, Value);
             this.Hide();
             MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
             makeAnotherWithdrawal.ShowDialog();
@@ -98,7 +109,10 @@ namespace CapStoneATM
 
         private void btn_withDraw40_Click(object sender, EventArgs e)
         {
+            CustomerRepository customerRepository = new CustomerRepository(GetConnection);
+            decimal withDraw40 = 40;
             //withdrawals 2 20 from the data base
+            customerRepository.UpdateFunds(withDraw40, Value);
             this.Hide();
             MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
             makeAnotherWithdrawal.ShowDialog();
@@ -108,7 +122,10 @@ namespace CapStoneATM
 
         private void btn_withDraw60_Click(object sender, EventArgs e)
         {
+            CustomerRepository customerRepository = new CustomerRepository(GetConnection);
+            decimal withDraw60 = 60;
             //withdrawals 3 20 from the data base
+            customerRepository.UpdateFunds(withDraw60, Value);
             this.Hide();
             MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
             makeAnotherWithdrawal.ShowDialog();
@@ -118,7 +135,10 @@ namespace CapStoneATM
 
         private void btn_withDraw100_Click(object sender, EventArgs e)
         {
+            CustomerRepository customerRepository = new CustomerRepository(GetConnection);
+            decimal withDraw100 = 100;
             //withdrawals 5 20 from the data base
+            customerRepository.UpdateFunds(withDraw100, Value);
             this.Hide();
             MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
             makeAnotherWithdrawal.ShowDialog();
@@ -128,30 +148,39 @@ namespace CapStoneATM
 
         private void btn_withdrawal_Click(object sender, EventArgs e)
         {
+            CustomerRepository customerRepository = new CustomerRepository(GetConnection);
             string str = txtbox_Withdrawal.Text;
+
             try
             {
+
                 decimal withdrawal = 0;
+
                 withdrawal = Convert.ToDecimal(str);
                 if (withdrawal % 20 == 0)
                 {
-                    if (withdrawal > 1000)
+                   // decimal total = 0;
+                     
+                    if (withdrawal <= 1000)
                     {
-                        string box_error = "Invalid entery";
-                        MessageBox.Show(box_error);
-                        txtbox_Withdrawal.Clear();
-                    }
-                    else
-                    {
-                        //withdrawals the amount
-
+                        //total = Convert.ToDecimal( customerRepository.GetFunds(Value)) - withdrawal;
+                        customerRepository.UpdateFunds(withdrawal, Value);
                         this.Hide();
                         MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
                         makeAnotherWithdrawal.ShowDialog();
                         this.Close();
                     }
+                    else
+                    {
+                        string box_error = "Invalid entery";
+                        MessageBox.Show(box_error);
+                        txtbox_Withdrawal.Clear();
+                        //withdrawals the amount
+
 
                     }
+
+                }
                 else
                 {
                     string box_error = "Invalid entery";

@@ -11,7 +11,8 @@ using System.Windows.Forms;
 namespace CapStoneATM
 {
     public partial class MakeAnotherWithdrawal : Form
-    {
+    {   
+
         public MakeAnotherWithdrawal()
         {
             InitializeComponent();

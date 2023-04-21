@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ATM.DB.Interfaces;
+using ATM.Logic.Models;
 using Dapper;
 
 namespace ATM.DB.Repository
@@ -28,14 +31,21 @@ namespace ATM.DB.Repository
             }
         }
 
-        public string GetFirstName(string firstName)
+        public string GetFirstName(string id)
         {
             throw new NotImplementedException();
         }
 
-        public decimal GetFunds(decimal funds)
+        public string GetFunds(string id)//It will not get the funds so I can change them. 
         {
-            throw new NotImplementedException();
+            var sql = "SELECT Funds FROM Customer WHERE AccountNumber = @AccountNumber";
+            using (var connection = _connectionFactory.GetConnetion)
+            {
+                connection.Open();
+                var result = connection.QueryFirst(sql, new { AccountNumber = id });
+                
+                return result;
+            }
         }
 
         public string GetLastName(string lastName)
@@ -45,7 +55,7 @@ namespace ATM.DB.Repository
 
         public decimal UpdateFunds(decimal funds, string id)
         {
-            var sql = "UPDATE Customer SET Funds = @Funds WHERE AccountNumber =@AccountNumber";
+            var sql = "UPDATE Customer SET Funds = Funds - @Funds WHERE AccountNumber =@AccountNumber";
             using (var connection = _connectionFactory.GetConnetion)
             {
                 connection.Open();
