@@ -7,12 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ATM.DB.UOW;
+using ATM.DB.Interfaces;
+using ATM.Logic.Models;
+using Dapper;
+using ATM.DB.Repository;
 
 namespace CapStoneATM
 {
     public partial class MakeAnotherWithdrawal : Form
-    {   
-
+    {
+        public IConnectionFactory GetConnection { get; private set; }
+        public string Value { get; set; }
+        public int checker { get; set; }
         public MakeAnotherWithdrawal()
         {
             InitializeComponent();
@@ -30,6 +37,8 @@ namespace CapStoneATM
         {
             this.Hide();
             Withdrawal withdrawal = new Withdrawal();
+            withdrawal.Value = Value;
+            withdrawal.checker = checker;
             withdrawal.ShowDialog();
             this.Close();
         }

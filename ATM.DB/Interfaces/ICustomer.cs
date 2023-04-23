@@ -9,7 +9,7 @@ namespace ATM.DB.Interfaces
 {
     public interface ICustomer
     {
-        List<string> GetAccount(string id);
+        List<Customer> GetAccount(string id);
         string GetFirstName(string firstName);
         string GetLastName(string lastName);
         string GetFunds(string id);

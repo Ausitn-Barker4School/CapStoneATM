@@ -20,13 +20,13 @@ namespace ATM.DB.Repository
             _connectionFactory = conn;
         }
 
-        public List<string> GetAccount(string id)
+        public List<Customer> GetAccount(string id)
         {
             var sql = "SELECT * FROM Customer WHERE AccountNumber = @AccountNumber";
             using (var connection = _connectionFactory.GetConnetion)
             {
                 connection.Open();
-                var result = connection.Query<string>(sql, new { AccountNumber = id }).ToList();
+                var result = connection.Query<Customer>(sql, new { AccountNumber = id }).ToList();
                 return result;
             }
         }

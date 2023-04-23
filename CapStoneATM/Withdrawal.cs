@@ -17,6 +17,7 @@ namespace CapStoneATM
     {
         public IConnectionFactory GetConnection { get; private set; }
         public string Value { get; set; }
+        public int checker { get; set; }
         
         public Withdrawal()
         {
@@ -99,11 +100,15 @@ namespace CapStoneATM
             CustomerRepository customerRepository = new CustomerRepository(GetConnection);
             decimal withDraw20 = 20;
             //Withdrawals 20 from the data base
-            customerRepository.UpdateFunds(withDraw20, Value);
-            this.Hide();
-            MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
-            makeAnotherWithdrawal.ShowDialog();
-            this.Close();
+            if (checker < 4)
+            {
+                checker++;
+                customerRepository.UpdateFunds(withDraw20, Value);
+                this.Hide();
+                MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+                makeAnotherWithdrawal.ShowDialog();
+                this.Close();
+            }
 
         }
 
@@ -111,12 +116,16 @@ namespace CapStoneATM
         {
             CustomerRepository customerRepository = new CustomerRepository(GetConnection);
             decimal withDraw40 = 40;
-            //withdrawals 2 20 from the data base
-            customerRepository.UpdateFunds(withDraw40, Value);
-            this.Hide();
-            MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
-            makeAnotherWithdrawal.ShowDialog();
-            this.Close();
+            if (checker < 4)
+            {
+                //withdrawals 2 20 from the data base
+                checker++;
+                customerRepository.UpdateFunds(withDraw40, Value);
+                this.Hide();
+                MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+                makeAnotherWithdrawal.ShowDialog();
+                this.Close();
+            }
 
         }
 
@@ -124,12 +133,17 @@ namespace CapStoneATM
         {
             CustomerRepository customerRepository = new CustomerRepository(GetConnection);
             decimal withDraw60 = 60;
-            //withdrawals 3 20 from the data base
-            customerRepository.UpdateFunds(withDraw60, Value);
-            this.Hide();
-            MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
-            makeAnotherWithdrawal.ShowDialog();
-            this.Close();
+
+            if (checker < 4)
+            {
+                //withdrawals 3 20 from the data base
+                checker++;
+                customerRepository.UpdateFunds(withDraw60, Value);
+                this.Hide();
+                MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+                makeAnotherWithdrawal.ShowDialog();
+                this.Close();
+            }
 
         }
 
@@ -137,12 +151,16 @@ namespace CapStoneATM
         {
             CustomerRepository customerRepository = new CustomerRepository(GetConnection);
             decimal withDraw100 = 100;
-            //withdrawals 5 20 from the data base
-            customerRepository.UpdateFunds(withDraw100, Value);
-            this.Hide();
-            MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
-            makeAnotherWithdrawal.ShowDialog();
-            this.Close();
+            if (checker < 4)
+            {
+                //withdrawals 5 20 from the data base
+                checker++;
+                customerRepository.UpdateFunds(withDraw100, Value);
+                this.Hide();
+                MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+                makeAnotherWithdrawal.ShowDialog();
+                this.Close();
+            }
 
         }
 
@@ -163,12 +181,19 @@ namespace CapStoneATM
                      
                     if (withdrawal <= 1000)
                     {
-                        //total = Convert.ToDecimal( customerRepository.GetFunds(Value)) - withdrawal;
-                        customerRepository.UpdateFunds(withdrawal, Value);
-                        this.Hide();
-                        MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
-                        makeAnotherWithdrawal.ShowDialog();
-                        this.Close();
+                        if (checker < 4)
+                        {
+                            //total = Convert.ToDecimal( customerRepository.GetFunds(Value)) - withdrawal;
+                            customerRepository.UpdateFunds(withdrawal, Value);
+                            this.Hide();
+                            checker++;
+
+                            MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+                            makeAnotherWithdrawal.checker = checker;
+                            makeAnotherWithdrawal.Value = Value;
+                            makeAnotherWithdrawal.ShowDialog();
+                            this.Close();
+                        }
                     }
                     else
                     {
@@ -201,6 +226,7 @@ namespace CapStoneATM
         {
             this.Hide();
             AccountForm accountForm = new AccountForm();
+
             accountForm.ShowDialog();
             this.Close();
         }
@@ -209,6 +235,7 @@ namespace CapStoneATM
         {
             this.Hide();
             EditAccount editAccount = new EditAccount();
+            editAccount.Value = Value;
             editAccount.ShowDialog();
             this.Close();
         }

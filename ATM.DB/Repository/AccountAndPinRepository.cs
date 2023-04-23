@@ -21,13 +21,13 @@ namespace ATM.DB.Repository
             _connectionFactory = conn;
         }
 
-        public int AddPin(string accountNumber, int pin)
+        public int AddPin(AccountAndPin entity)
         {
             var sql = "Insert into AccountAndPin (AccountNumber, Pin) VALUE(@AccountNumber, @Pin)";
             using (var connection = _connectionFactory.GetConnetion)
             {
                 connection.Open();
-                var result = connection.QueryFirstOrDefault(sql, new { AccountNumber = accountNumber, Pin = pin });
+                var result = connection.QueryFirstOrDefault(sql, entity);
                 return result;
             }
         }

@@ -60,6 +60,7 @@ namespace CapStoneATM
             this.btn_phoneDelete = new System.Windows.Forms.Button();
             this.txtbox_Phone = new System.Windows.Forms.TextBox();
             this.btn_logOut = new System.Windows.Forms.Button();
+            this.btn_withdrawal = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtbox_pin
@@ -75,7 +76,9 @@ namespace CapStoneATM
             this.lstbox_bankStatement.ItemHeight = 32;
             this.lstbox_bankStatement.Location = new System.Drawing.Point(615, 225);
             this.lstbox_bankStatement.Name = "lstbox_bankStatement";
-            this.lstbox_bankStatement.Size = new System.Drawing.Size(338, 292);
+            this.lstbox_bankStatement.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lstbox_bankStatement.ScrollAlwaysVisible = true;
+            this.lstbox_bankStatement.Size = new System.Drawing.Size(459, 292);
             this.lstbox_bankStatement.TabIndex = 4;
             // 
             // btn_statement
@@ -365,11 +368,22 @@ namespace CapStoneATM
             this.btn_logOut.UseVisualStyleBackColor = true;
             this.btn_logOut.Click += new System.EventHandler(this.btn_logOut_Click);
             // 
+            // btn_withdrawal
+            // 
+            this.btn_withdrawal.Location = new System.Drawing.Point(370, 594);
+            this.btn_withdrawal.Name = "btn_withdrawal";
+            this.btn_withdrawal.Size = new System.Drawing.Size(150, 46);
+            this.btn_withdrawal.TabIndex = 53;
+            this.btn_withdrawal.Text = "Back";
+            this.btn_withdrawal.UseVisualStyleBackColor = true;
+            this.btn_withdrawal.Click += new System.EventHandler(this.btn_withdrawal_Click);
+            // 
             // EditAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 699);
+            this.ClientSize = new System.Drawing.Size(1132, 699);
+            this.Controls.Add(this.btn_withdrawal);
             this.Controls.Add(this.btn_logOut);
             this.Controls.Add(this.txtbox_Phone);
             this.Controls.Add(this.btn_phoneClear);
@@ -440,5 +454,6 @@ namespace CapStoneATM
         private System.Windows.Forms.Button btn_phoneDelete;
         private System.Windows.Forms.TextBox txtbox_Phone;
         private System.Windows.Forms.Button btn_logOut;
+        private System.Windows.Forms.Button btn_withdrawal;
     }
 }

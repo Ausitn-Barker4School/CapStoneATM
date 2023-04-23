@@ -19,6 +19,7 @@ namespace CapStoneATM
     {
         public IConnectionFactory GetConnection { get; private set; }
         public string Value { get; set; }
+        public int checker = 0;
         public PinForm()
         {
             InitializeComponent();
@@ -97,6 +98,7 @@ namespace CapStoneATM
                         this.Hide();
                         Withdrawal withdrawal = new Withdrawal();
                         withdrawal.Value = Value;
+                        withdrawal.checker = checker;
                         withdrawal.ShowDialog();
                         this.Close();
                     }

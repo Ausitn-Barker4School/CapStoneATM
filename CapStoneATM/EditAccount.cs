@@ -7,22 +7,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ATM.DB.UOW;
+using ATM.DB.Interfaces;
+using ATM.Logic.Models;
+using Dapper;
+using ATM.DB.Repository;
 
 namespace CapStoneATM
 {
     public partial class EditAccount : Form
     {
+        public IConnectionFactory GetConnection { get; private set; }
+        public string Value { get; set; }
+        public int checker { get; set; }
         public EditAccount()
         {
             InitializeComponent();
+            GetConnection = new DatabaseConnectionFactory();
+            var atm = new UnitOfWork(GetConnection);
         }
 
         //Statement button and get Statement information from SQL database
         private void btn_statement_Click(object sender, EventArgs e)
         {
-            //Get infomration from Data base. 
-        }
+            lstbox_bankStatement.Items.Clear();
+            CustomerRepository customer = new CustomerRepository(GetConnection);
+            AccountAndPhoneRepository accountAndPhoneRepository = new AccountAndPhoneRepository(GetConnection);
 
+            customer.GetAccount(Value);
+            foreach(var items in customer.GetAccount(Value))
+            {
+                lstbox_bankStatement.Items.Add("Account ID:" + items.AccountNumber + ".");
+                lstbox_bankStatement.Items.Add("Name: " + items.FirstName + " " + items.LastName + ".");
+                lstbox_bankStatement.Items.Add("Funds: $" + items.Funds);
+            }
+            foreach(var items in accountAndPhoneRepository.GetAccount(Value))
+            {
+                lstbox_bankStatement.Items.Add("Phone: " + items.PhoneNumber);
+            }
+            
+        }
+        
 
         // Pin buttons txtbox_pin
         private void button1_Click(object sender, EventArgs e)
@@ -95,8 +120,14 @@ namespace CapStoneATM
 
         private void btn_pinAdd_Click(object sender, EventArgs e)
         {
+            AccountAndPinRepository accountAndPinRepository = new AccountAndPinRepository(GetConnection);
             if (txtbox_pin.TextLength == 4)
             {
+                int newPin = 0;
+                newPin =  Convert.ToInt32(txtbox_pin);//exception user-unhandled 'Unable to cast object of type 'System.Windows.Forms.TextBox' to type 'System.IConvertible'.'
+
+
+                accountAndPinRepository.AddPin( new AccountAndPin { AccountNumber = Value, Pin = newPin });
                 string success = "Success";
                 MessageBox.Show(success);
 
@@ -186,6 +217,11 @@ namespace CapStoneATM
             //adds to SQL
             if (txtbox_Phone.TextLength == 10)
             {
+                string newPhone = "";
+                newPhone = txtbox_Phone.Text;
+                AccountAndPhoneRepository accountAndPhone = new AccountAndPhoneRepository(GetConnection);
+
+                accountAndPhone.AddPhone(new AccountAndPhone { AccountNumber = Value, PhoneNumber = newPhone });
                 string success = "Success";
                 MessageBox.Show(success);
 
@@ -204,6 +240,16 @@ namespace CapStoneATM
             this.Hide();
             AccountForm accountForm = new AccountForm();
             accountForm.ShowDialog();
+            this.Close();
+        }
+
+        private void btn_withdrawal_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Withdrawal withdrawal = new Withdrawal();
+            withdrawal.Value = Value;
+            withdrawal.checker = checker;
+            withdrawal.ShowDialog();
             this.Close();
         }
     }
