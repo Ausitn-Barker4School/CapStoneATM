@@ -109,6 +109,10 @@ namespace CapStoneATM
                 makeAnotherWithdrawal.ShowDialog();
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show("You have reached your limit for today.");
+            }
 
         }
 
@@ -125,6 +129,10 @@ namespace CapStoneATM
                 MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
                 makeAnotherWithdrawal.ShowDialog();
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("You have reached your limit for today.");
             }
 
         }
@@ -144,6 +152,10 @@ namespace CapStoneATM
                 makeAnotherWithdrawal.ShowDialog();
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show("You have reached your limit for today.");
+            }
 
         }
 
@@ -160,6 +172,10 @@ namespace CapStoneATM
                 MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
                 makeAnotherWithdrawal.ShowDialog();
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("You have reached your limit for today.");
             }
 
         }
@@ -193,6 +209,10 @@ namespace CapStoneATM
                             makeAnotherWithdrawal.Value = Value;
                             makeAnotherWithdrawal.ShowDialog();
                             this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("You have reached your limit for today.");
                         }
                     }
                     else

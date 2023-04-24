@@ -47,6 +47,8 @@ namespace CapStoneATM
         {
             this.Hide();
             EditAccount editAccount = new EditAccount();
+            editAccount.checker = checker;
+            editAccount.Value = Value;
             editAccount.ShowDialog();
             this.Close();
         }

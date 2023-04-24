@@ -23,11 +23,11 @@ namespace ATM.DB.Repository
 
         public int AddPin(AccountAndPin entity)
         {
-            var sql = "Insert into AccountAndPin (AccountNumber, Pin) VALUE(@AccountNumber, @Pin)";
+            var sql = "INSERT INTO AccountAndPin (AccountNumber, Pin) VALUE(@AccountNumber, @Pin)";
             using (var connection = _connectionFactory.GetConnetion)
             {
                 connection.Open();
-                var result = connection.QueryFirstOrDefault(sql, entity);
+                var result = connection.Execute(sql, entity);
                 return result;
             }
         }
