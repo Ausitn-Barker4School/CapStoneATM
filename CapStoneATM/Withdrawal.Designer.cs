@@ -242,11 +242,11 @@ namespace CapStoneATM
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(118, 165);
+            this.label2.Location = new System.Drawing.Point(142, 175);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(287, 32);
+            this.label2.Size = new System.Drawing.Size(214, 32);
             this.label2.TabIndex = 53;
-            this.label2.Text = "Only can in deliver in $20";
+            this.label2.Text = "Increments of  $20";
             // 
             // btn_EditFile
             // 

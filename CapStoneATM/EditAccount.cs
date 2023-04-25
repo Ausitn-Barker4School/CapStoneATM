@@ -124,8 +124,7 @@ namespace CapStoneATM
             if (txtbox_pin.TextLength == 4)
             {
                 int newPin = 0;
-                newPin =  Convert.ToInt32(txtbox_pin);//exception user-unhandled 'Unable to cast object of type 'System.Windows.Forms.TextBox' to type 'System.IConvertible'.'
-
+                newPin =  Convert.ToInt32(txtbox_pin.Text);
 
                 accountAndPinRepository.AddPin( new AccountAndPin { AccountNumber = Value, Pin = newPin });
                 string success = "Success";
@@ -217,8 +216,8 @@ namespace CapStoneATM
             //adds to SQL
             if (txtbox_Phone.TextLength == 10)
             {
-                string newPhone = "";
-                newPhone = txtbox_Phone.Text;
+
+                string newPhone = txtbox_Phone.Text;
                 AccountAndPhoneRepository accountAndPhone = new AccountAndPhoneRepository(GetConnection);
 
                 accountAndPhone.AddPhone(new AccountAndPhone { AccountNumber = Value, PhoneNumber = newPhone });

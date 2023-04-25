@@ -100,12 +100,14 @@ namespace CapStoneATM
             CustomerRepository customerRepository = new CustomerRepository(GetConnection);
             decimal withDraw20 = 20;
             //Withdrawals 20 from the data base
-            if (checker < 4)
+            if (checker < 3)
             {
-                checker++;
+                
                 customerRepository.UpdateFunds(withDraw20, Value);
                 this.Hide();
                 MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+                makeAnotherWithdrawal.checker = checker + 1;
+                makeAnotherWithdrawal.Value = Value;
                 makeAnotherWithdrawal.ShowDialog();
                 this.Close();
             }
@@ -120,13 +122,15 @@ namespace CapStoneATM
         {
             CustomerRepository customerRepository = new CustomerRepository(GetConnection);
             decimal withDraw40 = 40;
-            if (checker < 4)
+            if (checker < 3)
             {
                 //withdrawals 2 20 from the data base
                 checker++;
                 customerRepository.UpdateFunds(withDraw40, Value);
                 this.Hide();
                 MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+                makeAnotherWithdrawal.checker = checker + 1;
+                makeAnotherWithdrawal.Value = Value;
                 makeAnotherWithdrawal.ShowDialog();
                 this.Close();
             }
@@ -142,13 +146,15 @@ namespace CapStoneATM
             CustomerRepository customerRepository = new CustomerRepository(GetConnection);
             decimal withDraw60 = 60;
 
-            if (checker < 4)
+            if (checker < 3)
             {
                 //withdrawals 3 20 from the data base
                 checker++;
                 customerRepository.UpdateFunds(withDraw60, Value);
                 this.Hide();
                 MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+                makeAnotherWithdrawal.checker = checker + 1;
+                makeAnotherWithdrawal.Value = Value;
                 makeAnotherWithdrawal.ShowDialog();
                 this.Close();
             }
@@ -163,13 +169,15 @@ namespace CapStoneATM
         {
             CustomerRepository customerRepository = new CustomerRepository(GetConnection);
             decimal withDraw100 = 100;
-            if (checker < 4)
+            if (checker < 3)
             {
                 //withdrawals 5 20 from the data base
-                checker++;
+                
                 customerRepository.UpdateFunds(withDraw100, Value);
                 this.Hide();
                 MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
+                makeAnotherWithdrawal.checker = checker + 1;
+                makeAnotherWithdrawal.Value = Value;
                 makeAnotherWithdrawal.ShowDialog();
                 this.Close();
             }
@@ -197,15 +205,15 @@ namespace CapStoneATM
                      
                     if (withdrawal <= 1000)
                     {
-                        if (checker < 4)
+                        if (checker < 3)
                         {
                             //total = Convert.ToDecimal( customerRepository.GetFunds(Value)) - withdrawal;
                             customerRepository.UpdateFunds(withdrawal, Value);
                             this.Hide();
-                            checker++;
+                            
 
                             MakeAnotherWithdrawal makeAnotherWithdrawal = new MakeAnotherWithdrawal();
-                            makeAnotherWithdrawal.checker = checker;
+                            makeAnotherWithdrawal.checker = checker +1;
                             makeAnotherWithdrawal.Value = Value;
                             makeAnotherWithdrawal.ShowDialog();
                             this.Close();
@@ -256,6 +264,7 @@ namespace CapStoneATM
             this.Hide();
             EditAccount editAccount = new EditAccount();
             editAccount.Value = Value;
+            editAccount.checker = checker;
             editAccount.ShowDialog();
             this.Close();
         }

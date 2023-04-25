@@ -23,11 +23,11 @@ namespace ATM.DB.Repository
 
         public int AddPin(AccountAndPin entity)
         {
-            var sql = "INSERT INTO AccountAndPin (AccountNumber, Pin) VALUE(@AccountNumber, @Pin)";
+            var sql = "INSERT INTO AccountAndPin (AccountNumber, Pin) VALUES (@AccountNumber, @Pin)";
             using (var connection = _connectionFactory.GetConnetion)
             {
                 connection.Open();
-                var result = connection.Execute(sql, entity);
+                var result = connection.Execute(sql, entity); //This can be the issue Look at the CKK project to check. 
                 return result;
             }
         }

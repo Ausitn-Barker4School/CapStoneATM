@@ -20,7 +20,7 @@ namespace ATM.DB.Repository
 
         public int AddPhone(AccountAndPhone entity)
         {
-            var sql = "INSERT INTO AccountAndPhone (AccountNumber, PhoneNumber) VALUE(@AccountNumber, @PhoneNumber)";
+            var sql = "INSERT INTO AccountAndPhone (AccountNumber, PhoneNumber) VALUES (@AccountNumber, @PhoneNumber)";
             using (var connection = _connectionFactory.GetConnetion)
             {
                 connection.Open();
